@@ -2869,7 +2869,7 @@ export const crossAssetExchangeEstimateGas = async (inputCoin: string, outputCoi
     return (await routerContract.estimateGas.exchange(_amount, route, indices, _minRecvAmount, { ...curve.constantOptions, value })).toNumber()
 }
 
-export const crossAssetExchange = async (inputCoin: string, outputCoin: string, amount: string, maxSlippage = 0.02): Promise<string> => {
+export const crossAssetExchange = async (inputCoin: string, outputCoin: string, amount: string, maxSlippage = 0.02): Promise<ethers.PopulatedTransaction> => {
     if (curve.chainId !== 1) {
         throw Error(`Cross-asset swaps are not available on this network (id${curve.chainId})`)
     }
@@ -2890,7 +2890,7 @@ export const crossAssetExchange = async (inputCoin: string, outputCoin: string, 
 
     await curve.updateFeeData();
     const gasLimit = (await routerContract.estimateGas.exchange(_amount, route, indices, _minRecvAmount, { ...curve.constantOptions, value })).mul(130).div(100);
-    return (await routerContract.exchange(_amount, route, indices, _minRecvAmount, { ...curve.options, value, gasLimit })).hash;
+    return (await routerContract.populateTransaction.exchange(_amount, route, indices, _minRecvAmount, { ...curve.options, value, gasLimit }));
 }
 
 

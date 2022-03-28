@@ -161,7 +161,7 @@ class Curve implements ICurve {
         let cTokens, yTokens, ycTokens, aTokens;
 
         const network = this.provider.network || await this.provider._networkPromise;
-        console.log("CURVE-JS IS CONNECTED TO NETWORK:", network);
+        //console.log("CURVE-JS IS CONNECTED TO NETWORK:", network);
 
         this.chainId = network.chainId;
 
