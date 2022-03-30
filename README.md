@@ -1,10 +1,14 @@
 # Curve JS
+Fork from curve-js and custom modification to fit the bridge project
 
-## Setup
+## Build
 
-Install from npm:
+`npm run build
+## Development Setup
 
-`npm install @curvefi/api`
+Install:
+
+`npm install`
 
 ## Init
 ```ts
